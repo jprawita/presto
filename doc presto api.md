@@ -224,28 +224,13 @@ outlet = rst, msc <br>
 > http://localhost/PRESTO/public/api/reportKasir?date=2019-11-25&dept=CRISPY+BANDUNG
 
 
-# PROCEDURE 
+# UPDATE
+
+|No|Date|Fungsi|Deskripsi|
+|-|-|-|-|
+|1|2019-01-10|Top 10 Product sales|Ditambahkan parameter tipe = MTD, DTD, YTD <br> http://localhost/PRESTO/public/api/productSales/food/rst?date=2019-06-22&dept=CRISPY+PIZZA&tipe=MTD
+|2|2019-01-10|Report Transaction summary (by APP)|Dibuatkan procedure|
+|3|2019-01-10|Sales Performance Outlet|Data yang ditampilkan dengan parameter MTD, label diubah ke format tanggal|
+|4|2019-01-10|Report analisys by time order|Ditambahkan key baru time start, end|
 
 
-
-BEGIN
-
-    DECLARE p_outlet varchar(191);
-    DECLARE p_dept varchar(191);
-
-SELECT bill.nobill, bill.tanggal, bill.net, bill.kode_pro as bill_produk, TRIM(produk.groups) as group_produk, bill.disc_nom as diskon, listbill.compliment, listbill.net as listbill_net, listbill.pax, bill.gross, bill.tax, bill.ser, listbill.cash, listbill.cc as cc1, listbill.cc2, listbill.other AS arNominal, listbill.gb as chargeToRoom, listbill.cash_usd as foreign_cash, listbill.forex, listbill.voucher as voucherPromo, listbill.deposit as clearingDp, listbill.free_bf as voucherBf, listbill.tip as guestTiping, bill.compli, listbill.total as totalListbill, listbill.cdept as dept2
-
-FROM bill
-
-INNER JOIN produk ON bill.kode_pro=produk.kode_pro
-INNER JOIN listbill ON bill.nobill=listbill.nobill
-
-WHERE bill.tanggal = pdate AND listbill.cdept = pdept AND bill.kode_out = poutlet;
-
-    IF poutlet != 'all' THEN
-        SET p_outlet = 'AND bill.kode_out = poutlet';
-    ELSE
-        SET p_outlet = '';
-    END IF;
-
-END
