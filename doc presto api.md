@@ -232,4 +232,3 @@ outlet = rst, msc <br>
 |2|8/1/2020|Report Transaction summary (by APP)|Dibuatkan procedure|
 |3|8/1/2020|Sales Performance Outlet|Data yang ditampilkan dengan parameter MTD, label diubah ke format tanggal|
 |4|8/1/2020|Report analisys by time order|Ditambahkan key baru time start, end|
-|5|13/1/2020|Report Analisys By Time|jika bisa ditambahkan procedure|
